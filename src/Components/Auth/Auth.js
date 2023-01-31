@@ -1,17 +1,18 @@
 import { useContext, useState } from 'react';
 import React from 'react';
-import { type } from '@testing-library/user-event/dist/type/index.js';
-import { UserContext } from '../../Context/UserProvider.js';
 import { authUser } from '../../services/auth.js';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useParams } from 'react-router-dom';
+import { useUser } from '../../Context/UserProvider.js';
 
 export default function Auth() {
-  const { user, setUser } = useContext(UserContext);
+  const { user, setUser } = useUser();
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const { type } = useParams();
 
-  const submitAuth = async () => {
+  const submitAuth = async (e) => {
+    e.preventDefault();
     try {
       const user = await authUser(email, password, type);
       setUser(user);
@@ -25,8 +26,34 @@ export default function Auth() {
       <nav>
         <div>Welcome back to your list of things to do!</div>
         <div className="tabs">
-          <NavLink to="/auth/sign">Sign Up</NavLink>
+          <NavLink to="/auth/sign-in">Sign In</NavLink>
+          <NavLink to="/auth/sign-up">Sign Up</NavLink>
         </div>
+        <form onSubmit={submitAuth}>
+          <div className="email">
+            <label>Email: </label>
+            <input
+              className="input"
+              type="email"
+              placeholder="name@example.com"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </div>
+          <div className="pass">
+            <label>Password: </label>
+            <input
+              className="input"
+              type="password"
+              placeholder="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </div>
+          <div className="controls">
+            <button>Submit</button>
+          </div>
+        </form>
       </nav>
     </div>
   );
