@@ -1,7 +1,8 @@
 import { useContext, useState } from 'react';
 import React from 'react';
 import { type } from '@testing-library/user-event/dist/type/index.js';
-import {}
+import { UserContext } from '../../Context/UserProvider.js';
+import { authUser } from '../../services/auth.js';
 
 export default function Auth() {
   const { user, setUser } = useContext(UserContext);
@@ -17,5 +18,4 @@ export default function Auth() {
       console.error(e);
     }
   };
-
 }
