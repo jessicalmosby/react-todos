@@ -1,7 +1,7 @@
-import { useContext, useState } from 'react';
+import { useState } from 'react';
 import React from 'react';
 import { authUser } from '../../services/auth.js';
-import { NavLink, useParams } from 'react-router-dom';
+import { NavLink, Redirect, useParams } from 'react-router-dom';
 import { useUser } from '../../Context/UserProvider.js';
 
 export default function Auth() {
@@ -10,6 +10,10 @@ export default function Auth() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const { type } = useParams();
+
+  // if (user) {
+  //   <Redirect to="/items" />;
+  // }
 
   const submitAuth = async (e) => {
     e.preventDefault();
@@ -26,7 +30,7 @@ export default function Auth() {
       <nav>
         <div>Welcome back to your list of things to do!</div>
         <div className="tabs">
-          <NavLink to="/auth/sign-in">Sign In</NavLink>
+          <NavLink to="/auth/sign-in">Sign In </NavLink>
           <NavLink to="/auth/sign-up">Sign Up</NavLink>
         </div>
         <form onSubmit={submitAuth}>
