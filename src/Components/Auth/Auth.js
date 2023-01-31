@@ -3,6 +3,7 @@ import React from 'react';
 import { type } from '@testing-library/user-event/dist/type/index.js';
 import { UserContext } from '../../Context/UserProvider.js';
 import { authUser } from '../../services/auth.js';
+import { NavLink } from 'react-router-dom';
 
 export default function Auth() {
   const { user, setUser } = useContext(UserContext);
@@ -18,4 +19,15 @@ export default function Auth() {
       console.error(e);
     }
   };
+
+  return (
+    <div className="auth-form">
+      <nav>
+        <div>Welcome back to your list of things to do!</div>
+        <div className="tabs">
+          <NavLink to="/auth/sign">Sign Up</NavLink>
+        </div>
+      </nav>
+    </div>
+  );
 }
