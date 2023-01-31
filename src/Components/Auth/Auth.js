@@ -11,9 +11,9 @@ export default function Auth() {
   const [password, setPassword] = useState('');
   const { type } = useParams();
 
-  // if (user) {
-  //   <Redirect to="/items" />;
-  // }
+  if (user) {
+    <Redirect to="/items" />;
+  }
 
   const submitAuth = async (e) => {
     e.preventDefault();
