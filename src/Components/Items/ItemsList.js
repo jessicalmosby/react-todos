@@ -1,7 +1,6 @@
 import { useContext } from 'react';
 import { ItemsContext } from '../../Context/ItemsContext.js';
 import { toggleListItem } from '../../services/items.js';
-import Items from './Items.js';
 
 export default function ItemsList() {
   const { items, setItems } = useContext(ItemsContext);
@@ -17,11 +16,11 @@ export default function ItemsList() {
   };
   return (
     <>
-      {Items.map((item) => (
+      {items.map((item) => (
         <div key={item.id}>
           <label>
             <input type="checkbox" checked={item.purchased} onChange={() => handleChange(item)} />
-            {item.qty} {item.name}
+            {item.name}
           </label>
         </div>
       ))}
